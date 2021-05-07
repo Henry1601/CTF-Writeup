@@ -1,4 +1,4 @@
-# CTF-Writeup
+# PicoCTF-Writeup
 
 This is my experience of CTF challenges.
 
