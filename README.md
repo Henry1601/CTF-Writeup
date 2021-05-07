@@ -1,6 +1,6 @@
 # CTF-Writeup
 
-This is my experiment of CTF challenges.
+This is my experience of CTF challenges.
 
 Hope you enjoy!
 
