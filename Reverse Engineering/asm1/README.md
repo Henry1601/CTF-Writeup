@@ -128,7 +128,7 @@ Now, use GCC to compile 2 files (I use Linux)
 ```
 *Note that GCC automatically compile 64-bit objects by default so we use `-m32` parameter to compile 32-bit objects.*
 
-Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lacking of time.
+Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lack of time.
 
 That's it. *Have fun hacking!*
 ## Flag
