@@ -38,8 +38,11 @@ I'll break it into pieces and explain each one.
 	<+1>:	mov    ebp,esp
 ```
 We know that we are putting 0x8be (input value of function) to stack, which gets pushed into EBP and then moved into ESP on line 0 and 1.
-
-|---------|---------|
-
-|---ebp---|---------|
-
+```
+	     Stack
+	|-------------|		(high memory)
+	|----0x8be----|		<--- ebp + 0xc
+	|-----ret-----|		<--- ebp + 0x8
+	|-----ebp-----|		<--- ebp
+	|-------------|		(low memory)
+```
