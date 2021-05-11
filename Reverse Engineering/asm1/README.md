@@ -1,6 +1,6 @@
 # asm1
 ## Problem
-What does asm1(0x8be) return? Submit the flag as a hexadecimal value (starting with '0x').
+> What does asm1(0x8be) return? Submit the flag as a hexadecimal value (starting with '0x').
 
 asm1:
 	<+0>:		push   ebp
