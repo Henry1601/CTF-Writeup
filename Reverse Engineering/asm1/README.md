@@ -78,4 +78,45 @@ Here is the function re-written in C code:
 ```
 ## Flag
 `0x8bb`
-##
+## Second solution
+Now I will make use of computer. First, I rewrite the code a little bit:
+```
+	.intel_syntax noprefix
+	.global asm1
+
+	asm1:
+	    push   ebp
+	        mov    ebp,esp
+	        cmp    DWORD PTR [ebp+0x8],0x71c
+	        jg     b37
+	        cmp    DWORD PTR [ebp+0x8],0x6cf
+	        jne    b29
+	        mov    eax,DWORD PTR [ebp+0x8]
+	        add    eax,0x3
+	        jmp    b60
+	b29:
+	        mov    eax,DWORD PTR [ebp+0x8]
+	        sub    eax,0x3
+	        jmp    b60
+	b37:
+	        cmp    DWORD PTR [ebp+0x8],0x8be
+	        jne    b54
+	        mov    eax,DWORD PTR [ebp+0x8]
+	        sub    eax,0x3
+	        jmp    b60
+	b54:
+	        mov    eax,DWORD PTR [ebp+0x8]
+	        add    eax,0x3
+	b60:
+	        pop    ebp
+	        ret
+```
+We then, build a C program to run it:
+```
+	#include<stdio.h>
+
+	int main() {
+	    printf("Flag is: 0x%x\n", asm1(0x8be));
+	    return 0;
+	}
+```
