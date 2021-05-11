@@ -76,8 +76,6 @@ Here is the function re-written in C code:
 			return val + 0x3;
 	}
 ```
-## Flag
-`0x8bb`
 ## Second solution
 Now I will make use of computer. First, I rewrite the code a little bit:
 ```
@@ -120,3 +118,6 @@ We then, build a C program to run it:
 	    return 0;
 	}
 ```
+And we get the same result as first solution.
+## Flag
+`0x8bb`
