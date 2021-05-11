@@ -6,9 +6,9 @@ AUTHOR: SANJAY C
 To me, there are two way to solve assembly problems like this one. First and recommend way is to read it line by line so we could understand it better. Second is to make it executable and let computer do it, we would get the result faster and more convenient. Here I will explain both but the second way will only be explained in this post.
 
 ```asm1:
-	<+0>:		push   ebp
-	<+1>:		mov    ebp,esp
-	<+3>:		cmp    DWORD PTR [ebp+0x8],0x71c
+	<+0>:	push   ebp
+	<+1>:	mov    ebp,esp
+	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
 	<+10>:	jg     0x512 <asm1+37>
 	<+12>:	cmp    DWORD PTR [ebp+0x8],0x6cf
 	<+19>:	jne    0x50a <asm1+29>
@@ -26,4 +26,4 @@ To me, there are two way to solve assembly problems like this one. First and rec
 	<+54>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+57>:	add    eax,0x3
 	<+60>:	pop    ebp
-	<+61>:	ret>```
+	<+61>:	ret>
