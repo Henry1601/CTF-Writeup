@@ -42,11 +42,16 @@ We know that we are putting 0x8be (input value of function) to stack, which gets
 	     Stack
 	|-------------|		(high memory)
 	|----0x8be----|		<--- ebp + 0x8 (input value)
-	|-----ret-----|		<--- ebp + 0x4
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
 	|-----ebp-----|		<--- ebp
 	|-------------|		(low memory)
 ```
 ```
 	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
 	<+10>:	jg     0x512 <asm1+37>
+```
+In the next 2 line we are seeing that we are comparing 0x8be (value at [ebp+0x8]) with 0x71c and since 0x8be is greater than 0x71c, we take the jump to asm1+37. The `jg` means "jump if greater". Now we are going to line 37.
+```
+	<+37>:	cmp    DWORD PTR [ebp+0x8],0x8be
+	<+44>:	jne    0x523 <asm1+54>
 ```
