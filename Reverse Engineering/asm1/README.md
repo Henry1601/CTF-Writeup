@@ -9,7 +9,8 @@ Note that this will require basic knowledge of assembly code that I can't cover 
 
 Let's begin! Here is the code
 
-```asm1:
+```
+asm1:
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
