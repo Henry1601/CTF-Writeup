@@ -8,7 +8,6 @@ To me, there are two way to solve assembly problems like this one. First and rec
 Note that this will require basic knowledge of assembly code that I can't cover it all so you can look up on the Internet.
 
 Let's begin! Here is the code
-
 ```
 asm1:
 	<+0>:	push   ebp
@@ -33,3 +32,9 @@ asm1:
 	<+60>:	pop    ebp
 	<+61>:	ret>
 ```
+I'll break it into pieces and explain each one
+```
+	<+0>:	push   ebp
+	<+1>:	mov    ebp,esp
+```
+We know that we are putting 0x8be (input value of function) to stack, which gets pushed into EBP and then moved into ESP on line 0 and 1.
