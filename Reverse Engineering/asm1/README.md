@@ -41,8 +41,12 @@ We know that we are putting 0x8be (input value of function) to stack, which gets
 ```
 	     Stack
 	|-------------|		(high memory)
-	|----0x8be----|		<--- ebp + 0xc
-	|-----ret-----|		<--- ebp + 0x8
+	|----0x8be----|		<--- ebp + 0x8 (input value)
+	|-----ret-----|		<--- ebp + 0x4
 	|-----ebp-----|		<--- ebp
 	|-------------|		(low memory)
+```
+```
+	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
+	<+10>:	jg     0x512 <asm1+37>
 ```
