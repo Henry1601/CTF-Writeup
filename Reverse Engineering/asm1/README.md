@@ -120,6 +120,6 @@ We then, build a C program to run it:
 ```
 And we get the same result as first solution. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lacking of time.
 
-That's it. Have fun hacking!
+That's it. *Have fun hacking!*
 ## Flag
 `0x8bb`
