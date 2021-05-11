@@ -4,6 +4,7 @@ AUTHOR: SANJAY C
 > What does asm1(0x8be) return? Submit the flag as a hexadecimal value (starting with '0x'). [Source](https://github.com/Henry1601/PicoCTF-Writeup/blob/6eecbc6c032866c91e5e09daebb27ac1482603a7/Reverse%20Engineering/asm1/test1.S)
 ## Solution
 To me, there are two way to solve assembly problems like this one. First and recommend way is to read it line by line so we could understand it better. Second is to make it executable and let computer do it, we would get the result faster and more convenient. Here I will explain both but the second way will only be explained in this post.
+
 Note that this will require basic knowledge of assembly code that I can't cover so you can look it up on the Internet.
 ```asm1:
 	<+0>:	push   ebp
