@@ -109,6 +109,8 @@ Now I will make use of computer. First, I rewrite the code a little bit:
 	        pop    ebp
 	        ret
 ```
+*Note that `.intel_syntax noprefix` is used for GCC.*
+
 We then, build a C program to run it:
 ```
 	#include<stdio.h>
