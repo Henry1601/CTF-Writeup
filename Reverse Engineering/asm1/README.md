@@ -120,7 +120,13 @@ We then, build a C program to run it:
 	    return 0;
 	}
 ```
-And we get the same result as first solution. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lacking of time.
+Now, use GCC to compile 2 files
+```
+	gcc -m32 -c asm1.S -o asm1.o
+	gcc -m32 -w -c run.c -o run.o
+	gcc -m32 run.o asm1.o -o result
+```
+Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lacking of time.
 
 That's it. *Have fun hacking!*
 ## Flag
