@@ -64,5 +64,17 @@ Here we are comparing input value with 0x8be. The `jne` means "**jump if not equ
 	<+61>:	ret
 ```
 At line 60, the stack is popped and EAX is returned. Since eax is equal to 0x8bb, that is our flag.
+
+Here is the function re-written in C code:
+```
+	int asm1(int val) {
+		if(val > 0x71c)
+			return val - 0x3;
+		else if(val != 0x6cf)
+			return val - 0x3;
+		else
+			return val + 0x3;
+	}
+```
 ## Flag
 `0x8bb`
