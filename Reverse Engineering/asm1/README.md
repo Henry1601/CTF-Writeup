@@ -39,7 +39,7 @@ I'll break it into pieces and explain each one.
 ```
 We know that we are putting 0x8be (input value of function) to stack, which gets pushed into EBP and then moved into ESP on line 0 and 1.
 
-	|---------|---------|
+|---------|---------|
 
-	|---ebp---|---------|
+|---ebp---|---------|
 
