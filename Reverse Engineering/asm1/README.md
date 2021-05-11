@@ -6,6 +6,9 @@ AUTHOR: SANJAY C
 To me, there are two way to solve assembly problems like this one. First and recommend way is to read it line by line so we could understand it better. Second is to make it executable and let computer do it, we would get the result faster and more convenient. Here I will explain both but the second way will only be explained in this post.
 
 Note that this will require basic knowledge of assembly code that I can't cover it all so you can look up on the Internet.
+
+Let's begin! Here is the code
+
 ```asm1:
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
@@ -28,3 +31,4 @@ Note that this will require basic knowledge of assembly code that I can't cover 
 	<+57>:	add    eax,0x3
 	<+60>:	pop    ebp
 	<+61>:	ret>
+```
