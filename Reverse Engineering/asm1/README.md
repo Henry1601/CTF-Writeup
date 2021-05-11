@@ -120,12 +120,14 @@ We then, build a C program to run it:
 	    return 0;
 	}
 ```
-Now, use GCC to compile 2 files
+Now, use GCC to compile 2 files (I use Linux)
 ```
 	gcc -m32 -c asm1.S -o asm1.o
 	gcc -m32 -w -c run.c -o run.o
 	gcc -m32 run.o asm1.o -o result
 ```
+*Note that gcc automatically compile 64-bit object by default so we use `-m32` parameter to compile 32-bit object*
+
 Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lacking of time.
 
 That's it. *Have fun hacking!*
