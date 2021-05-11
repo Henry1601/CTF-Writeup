@@ -5,7 +5,7 @@ AUTHOR: SANJAY C
 ## Solution
 To me, there are two way to solve assembly problems like this one. First and recommend way is to read it line by line so we could understand it better. Second is to make it executable and let computer do it, we would get the result faster and more convenient. Here I will explain both but the second way will only be explained in this post.
 
-'asm1:
+'<asm1:
 	<+0>:		push   ebp
 	<+1>:		mov    ebp,esp
 	<+3>:		cmp    DWORD PTR [ebp+0x8],0x71c
@@ -26,4 +26,4 @@ To me, there are two way to solve assembly problems like this one. First and rec
 	<+54>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+57>:	add    eax,0x3
 	<+60>:	pop    ebp
-	<+61>:	ret'
+	<+61>:	ret>'
