@@ -32,9 +32,11 @@ asm1:
 	<+60>:	pop    ebp
 	<+61>:	ret>
 ```
-I'll break it into pieces and explain each one
+I'll break it into pieces and explain each one.
 ```
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 ```
 We know that we are putting 0x8be (input value of function) to stack, which gets pushed into EBP and then moved into ESP on line 0 and 1.
+|---------|---------|
+|---ebp---|---------|
