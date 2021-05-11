@@ -30,7 +30,7 @@ asm1:
 	<+54>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+57>:	add    eax,0x3
 	<+60>:	pop    ebp
-	<+61>:	ret>
+	<+61>:	ret
 ```
 I'll break it into pieces and explain each one.
 ```
@@ -61,5 +61,8 @@ In the next 2 line we are seeing that we are comparing 0x8be (value at [ebp+0x8]
 Here we are comparing input value with 0x8be. The `jne` means "**jump if not equal**" and obviously 0x8be is equal 0x8be so we do not take the jump. In line 46 and 49, we subtract 0x3 from 0x8be then move to EAX, which would be 0x8bb now. We then unconditionally jump `jmp` to line 60.
 ```
 	<+60>:	pop    ebp
-	<+61>:	ret>
+	<+61>:	ret
 ```
+At line 60, the stack is popped and EAX is returned. Since eax is equal to 0x8bb, that is our flag.
+## Flag
+`0x8bb`
