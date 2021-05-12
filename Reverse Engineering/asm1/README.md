@@ -63,7 +63,7 @@ Here we are comparing input value with 0x8be. The `jne` means "**jump if not equ
 	<+60>:	pop    ebp
 	<+61>:	ret
 ```
-At line 60, the stack is popped and EAX is returned. Since eax is equal to 0x8bb, that is our flag.
+At line 60, the stack is popped and EAX is returned. Since EAX is equal to 0x8bb, that is our flag.
 
 Here is the function re-written in C code:
 ```
