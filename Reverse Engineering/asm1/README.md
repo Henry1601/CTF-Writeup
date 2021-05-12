@@ -7,7 +7,8 @@ To me, there are two ways to solve assembly problems like this one. First and re
 
 Note that this will require basic knowledge of assembly code that I can't cover it all so you can look up on the Internet.
 
-Let's begin! Here is the code
+Let's begin!
+### First solution
 ```
 asm1:
 	<+0>:	push   ebp
@@ -77,7 +78,7 @@ Here is the function re-written in C code:
 			return val + 0x3;
 	}
 ```
-## Second solution
+### Second solution
 Now I will make use of computer. First, I rewrite the code a little bit:
 ```
 	.intel_syntax noprefix
