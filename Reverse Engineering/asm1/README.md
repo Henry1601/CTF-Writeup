@@ -110,7 +110,7 @@ Now I will make use of computer. First, I rewrite the code a little bit:
 	        pop    ebp
 	        ret
 ```
-*Note that `.intel_syntax noprefix` is used for GCC.*
+> *Note that `.intel_syntax noprefix` is used for GCC.*
 
 We then, build a C program to run it:
 ```
@@ -127,7 +127,7 @@ Now, use GCC to compile 2 files (I use Linux)
 	gcc -m32 -w -c run.c -o run.o		(compile C file to object)
 	gcc -m32 run.o asm1.o -o result		(place output to result file)
 ```
-*Note that GCC automatically compile 64-bit objects by default so we use `-m32` parameter to compile 32-bit objects.*
+> *Note that GCC automatically compile 64-bit objects by default so we use `-m32` parameter to compile 32-bit objects.*
 
 Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lack of time.
 
