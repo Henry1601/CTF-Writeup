@@ -122,9 +122,9 @@ We then, build a C program to run it:
 ```
 Now, use GCC to compile 2 files (I use Linux)
 ```
-	gcc -m32 -c asm1.S -o asm1.o
-	gcc -m32 -w -c run.c -o run.o
-	gcc -m32 run.o asm1.o -o result
+	gcc -m32 -c asm1.S -o asm1.o		(compile assembly file to object)
+	gcc -m32 -w -c run.c -o run.o		(compile C file to object)
+	gcc -m32 run.o asm1.o -o result		(make executable file)
 ```
 *Note that GCC automatically compile 64-bit objects by default so we use `-m32` parameter to compile 32-bit objects.*
 
