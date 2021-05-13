@@ -42,11 +42,11 @@ We know that we are putting 0x8be (input value of function) to stack, which gets
 
 ```
 	     Stack
-	|-------------|		(high memory)
-	|----0x8be----|		<--- ebp + 0x8 (input value)
-	|-----ret-----|		<--- ebp + 0x4 (return addr)
-	|-----ebp-----|		<--- ebp
 	|-------------|		(low memory)
+	|-----ebp-----|		<--- ebp
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|----0x8be----|		<--- ebp + 0x8 (input value)
+	|-------------|		(high memory)
 ```
 ```
 	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
