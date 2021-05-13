@@ -81,7 +81,11 @@ Since 80 = 0x50, we can re-write line 24:
 	<+24>:  add    DWORD PTR [ebp-0x8],0x50
 ```
 In the last 3 lines, we return the value in **EAX**, which is [ebp-0x8].
-
+```
+	<+37>:	mov    eax,DWORD PTR [ebp-0x4]
+	<+40>:	leave  
+	<+41>:	ret
+```
 We can imagine the code written in C like this:
 ```
 	asm2(int a, int b) {
