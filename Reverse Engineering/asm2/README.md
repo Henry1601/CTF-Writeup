@@ -31,7 +31,7 @@ As usual, first 3 lines are the set-up step of the function.
 	<+3>:	sub    esp,0x10
 ```
 We push **EBP** into the stack, then put **ESP** 4 double words backward.
-> Note that all values in assembly are hexadecimal, which means 0x10 = 16 bytes = 4 double words.
+> *Note that all values in assembly are hexadecimal, which means 0x10 = 16 bytes = 4 double words.*
 ```
 	     Stack
 	|-------------|		(high memory)
@@ -39,5 +39,9 @@ We push **EBP** into the stack, then put **ESP** 4 double words backward.
 	|-----0xb-----|		<--- ebp + 0x8 (first input value)
 	|-----ret-----|		<--- ebp + 0x4 (return addr)
 	|-----ebp-----|		<--- ebp
+	|-------------|		<--- ebp - 0x4
+	|-------------|		<--- ebp - 0x8
+	|-------------|		<--- ebp - 0xc
+	|-----esp-----|		<--- ebp - 0x10
 	|-------------|		(low memory)
 ```
