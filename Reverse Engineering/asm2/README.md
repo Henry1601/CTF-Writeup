@@ -24,24 +24,52 @@ asm2:
 	<+40>:	leave  
 	<+41>:	ret
 ```
-As usual, first 3 lines are the set-up step of the function.
+As usual, first 3 lines are the set-up steps of the function.
 ```
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 	<+3>:	sub    esp,0x10
 ```
-We push **EBP** into the stack, then subtract 0x10 from **ESP**, which means put it 4 double words backward.
-> *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes = 4 double words.*
+We push **EBP** into the stack, move stack pointer (**ESP**) into it, then subtract 0x10 from **ESP**, which means we align the stack to a 16-byte boundary. Remember that stack grows towards lower memory addresses, that's why we subtract **ESP**.
+> *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes*
 ```
 	     Stack
-	|-------------|		(high memory)
-	|-----0x2e----|		<--- ebp + 0xc (second input value)
-	|-----0xb-----|		<--- ebp + 0x8 (first input value)
-	|-----ret-----|		<--- ebp + 0x4 (return addr)
-	|-----ebp-----|		<--- ebp
-	|-------------|		<--- ebp - 0x4
-	|-------------|		<--- ebp - 0x8
-	|-------------|		<--- ebp - 0xc
-	|-----esp-----|		<--- ebp - 0x10
 	|-------------|		(low memory)
+	|-----esp-----|		<--- ebp - 0x10
+	|-------------|		<--- ebp - 0xc
+	|-------------|		<--- ebp - 0x8
+	|-------------|		<--- ebp - 0x4
+	|-----ebp-----|
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|-----0xb-----|		<--- ebp + 0x8 (first input value)
+	|-----0x2e----|		<--- ebp + 0xc (second input value)
+	|-------------|		(high memory)
 ```
+```
+	<+6>:	mov    eax,DWORD PTR [ebp+0xc]
+	<+9>:	mov    DWORD PTR [ebp-0x4],eax
+	<+12>:	mov    eax,DWORD PTR [ebp+0x8]
+	<+15>:	mov    DWORD PTR [ebp-0x8],eax
+	<+18>:	jmp    0x509 <asm2+28>
+```
+Next, we move 0x2e (second input value) to [ebp-0x4] at line 6 and 9, 0xb (first input value) to [ebp-0x8] at line 12 and 15. Then, take the jump to line 28.
+```
+	     Stack
+	|-------------|		(low memory)
+	|-----esp-----|		<--- ebp - 0x10
+	|-------------|		<--- ebp - 0xc
+	|-----0xb-----|		<--- ebp - 0x8
+	|-----0x2e----|		<--- ebp - 0x4
+	|-----ebp-----|
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|-----0xb-----|		<--- ebp + 0x8 (first input value)
+	|-----0x2e----|		<--- ebp + 0xc (second input value)
+	|-------------|		(high memory)
+```
+```
+	<+20>:	add    DWORD PTR [ebp-0x4],0x1
+	<+24>:	sub    DWORD PTR [ebp-0x8],0xffffff80
+	<+28>:	cmp    DWORD PTR [ebp-0x8],0x63f3
+	<+35>:	jle    0x501 <asm2+20>
+```
+This is the loop of the function. As you can see, we compare 0xb with 0x63f3 and jump to line 20 "**if less or equal**" (`jle`). At line 20, we add 0x1 to 0x2e
