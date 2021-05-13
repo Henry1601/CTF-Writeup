@@ -48,7 +48,7 @@ We know that we are putting 0x8be (input value of function) to stack, which gets
 	|----0x8be----|		<--- ebp + 0x8 (input value)
 	|-------------|		(high memory)
 ```
-> *If you don't understand these step, this will be helpful: [Reversing Basics Part 2](http://blog.opensecurityresearch.com/2013/06/reversing-basics-part-2-understanding.html)*
+> *If you don't understand these steps, this will be helpful: [Reversing Basics Part 2](http://blog.opensecurityresearch.com/2013/06/reversing-basics-part-2-understanding.html)*
 ```
 	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
 	<+10>:	jg     0x512 <asm1+37>
