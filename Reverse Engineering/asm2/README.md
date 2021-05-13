@@ -72,11 +72,23 @@ Next, we move 0x2e (second input value) to [ebp-0x4] at line 6 and 9, 0xb (first
 	<+28>:	cmp    DWORD PTR [ebp-0x8],0x63f3
 	<+35>:	jle    0x501 <asm2+20>
 ```
-This is the loop of the function. As you can see, we compare 0xb with 0x63f3 and jump to line 20 "**if less or equal**" (`jle`). At line 20 and 24, we add 0x1 to [ebp-0x4], subtract 0xffffff80 from [ebp-0x8] then continue looping until [ebp-0x8] greater than 0x63f3. Note that we are working on x86 architecture, so 0xffffff80 = -80.
+This is the loop of the function. As you can see, we compare [ebp-0x8] with 0x63f3 and jump to line 20 "**if less or equal**" (`jle`). At line 20 and 24, we add 0x1 to [ebp-0x4], subtract 0xffffff80 from [ebp-0x8] then continue looping until [ebp-0x8] greater than 0x63f3. Note that we are working on x86 architecture, so 0xffffff80 = -80.
 
-[ebp-0x8] - (-80) = [ebp-0x8] + 80
+**[ebp-0x8] - (-80) = [ebp-0x8] + 80**
 
-Since 80 = 0x50, we can re-write line 24:`<+24>:  add    DWORD PTR [ebp-0x8],0x50`
+Since 80 = 0x50, we can re-write line 24:
+```
+	<+24>:  add    DWORD PTR [ebp-0x8],0x50
+```
+In the last 3 lines, we return the value in **EAX**, which is [ebp-0x8].
 
 We can imagine the code written in C like this:
+```
+	asm2(int a, int b) {
+		while(a <= 0x63f3) {
+			b += 1;
+			a += 0x50;
+		}
+		return b;
+	}
 ```
