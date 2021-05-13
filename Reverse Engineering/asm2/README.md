@@ -24,3 +24,20 @@ asm2:
 	<+40>:	leave  
 	<+41>:	ret
 ```
+As usual, first 3 lines are the set-up step of the function.
+```
+	<+0>:	push   ebp
+	<+1>:	mov    ebp,esp
+	<+3>:	sub    esp,0x10
+```
+We push **EBP** into the stack, then put **ESP** 4 double words backward.
+> Note that all values in assembly are hexadecimal, which means 0x10 = 16 bytes = 4 double words.
+```
+	     Stack
+	|-------------|		(high memory)
+	|-----0x2e----|		<--- ebp + 0xc (second input value)
+	|-----0xb-----|		<--- ebp + 0x8 (first input value)
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|-----ebp-----|		<--- ebp
+	|-------------|		(low memory)
+```
