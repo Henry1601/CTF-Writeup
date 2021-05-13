@@ -31,7 +31,7 @@ As usual, first 3 lines are the set-up steps of the function.
 	<+3>:	sub    esp,0x10
 ```
 We push **EBP** into the stack, move stack pointer (**ESP**) into it, then subtract 0x10 from **ESP**, which means we align the stack to a 16-byte boundary. Remember that stack grows towards lower memory addresses, that's why we subtract **ESP**.
-> *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes*
+> *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes.*
 ```
 	     Stack
 	|-------------|		(low memory)
