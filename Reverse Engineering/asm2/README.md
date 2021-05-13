@@ -30,8 +30,8 @@ As usual, first 3 lines are the set-up step of the function.
 	<+1>:	mov    ebp,esp
 	<+3>:	sub    esp,0x10
 ```
-We push **EBP** into the stack, then put **ESP** 4 double words backward.
-> *Note that all values in assembly are hexadecimal, which means 0x10 = 16 bytes = 4 double words.*
+We push **EBP** into the stack, then subtract 0x10 from **ESP**, which means put it 4 double words backward.
+> *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes = 4 double words.*
 ```
 	     Stack
 	|-------------|		(high memory)
