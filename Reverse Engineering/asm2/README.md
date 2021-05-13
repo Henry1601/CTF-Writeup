@@ -97,5 +97,7 @@ We can imagine the code written in C like this:
 	}
 ```
 Finally (easy now), calculate the loop and we get the flag.
+
+*Have fun hacking!*
 ## Flag
 `0xf6`
