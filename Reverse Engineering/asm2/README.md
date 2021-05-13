@@ -86,7 +86,7 @@ In the last 3 lines, we return the value in **EAX**, which is [ebp-0x4].
 	<+40>:	leave  
 	<+41>:	ret
 ```
-We can imagine the code written in C like this:
+We can imagine the code written in C would be like this:
 ```
 	asm2(int a, int b) {
 		while(a <= 0x63f3) {
