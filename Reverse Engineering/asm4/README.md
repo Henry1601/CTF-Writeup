@@ -1,9 +1,9 @@
 # asm4
 AUTHOR: SANJAY C
 ## Problem
-> What will asm4("picoCTF_f97bb") return? Submit the flag as a hexadecimal value (starting with '0x'). [Source](https://github.com/Henry1601/PicoCTF-Writeup/blob/7c6c90aa7f97904d61b8be89a385fcbd2aa3ddee/Reverse%20Engineering/asm4/test4.S)
+> What will asm4("picoCTF_f97bb") return? Submit the flag as a hexadecimal value (starting with '0x'). [Source](https://github.com/Henry1601/PicoCTF-Writeup/blob/main/Reverse%20Engineering/asm4/test4.S)
 ## Solution
-As I mentioned [here](https://github.com/Henry1601/PicoCTF-Writeup/blob/ac4c178de5946ae21a2cbeabbe06448f9dd20d17/Reverse%20Engineering/asm1/README.md), I will only explain handwork solution in this post.
+As I mentioned [here](https://github.com/Henry1601/PicoCTF-Writeup/tree/main/Reverse%20Engineering/asm1), I will only explain handwork solution in this post.
 
 Here is the code:
 ```
