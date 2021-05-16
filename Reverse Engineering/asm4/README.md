@@ -66,3 +66,23 @@ asm4:
 	<+156>:	pop    ebp
 	<+157>:	ret
 ```
+As usual, we are setting up the stack at the first 4 lines.
+```
+	<+0>:	push   ebp
+	<+1>:	mov    ebp,esp
+	<+3>:	push   ebx
+	<+4>:	sub    esp,0x10
+```
+The stack now would look like this:
+```
+	     Stack
+	|-------------|		(low memory)
+	|-----esp-----|		<--- ebp - 0x10
+	|-------------|		<--- ebp - 0xc
+	|-------------|		<--- ebp - 0x8
+	|-----ebx-----|		<--- ebp - 0x4
+	|-----ebp-----|
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|----string---|		<--- ebp + 0x8 (input string)
+	|-------------|		(high memory)
+```
