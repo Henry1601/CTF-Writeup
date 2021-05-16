@@ -20,17 +20,17 @@ asm1:
 	<+21>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+24>:	add    eax,0x3
 	<+27>:	jmp    0x529 <asm1+60>
-	<+29>:	mov    eax,DWORD PTR [ebp+0x8]
+<+29>:		mov    eax,DWORD PTR [ebp+0x8]
 	<+32>:	sub    eax,0x3
 	<+35>:	jmp    0x529 <asm1+60>
-	<+37>:	cmp    DWORD PTR [ebp+0x8],0x8be
+<+37>:		cmp    DWORD PTR [ebp+0x8],0x8be
 	<+44>:	jne    0x523 <asm1+54>
 	<+46>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+49>:	sub    eax,0x3
 	<+52>:	jmp    0x529 <asm1+60>
-	<+54>:	mov    eax,DWORD PTR [ebp+0x8]
+<+54>:		mov    eax,DWORD PTR [ebp+0x8]
 	<+57>:	add    eax,0x3
-	<+60>:	pop    ebp
+<+60>:		pop    ebp
 	<+61>:	ret
 ```
 I'll break it into pieces and explain each one.
