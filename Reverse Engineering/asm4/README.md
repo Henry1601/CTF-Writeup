@@ -66,19 +66,22 @@ asm4:
 	<+156>:	pop    ebp
 	<+157>:	ret
 ```
-As usual, we are setting up the stack at the first 4 lines.
+As usual, we are setting up the stack at these first lines.
 ```
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 	<+3>:	push   ebx
 	<+4>:	sub    esp,0x10
+	<+7>:	mov    DWORD PTR [ebp-0x10],0x27a
+	<+14>:	mov    DWORD PTR [ebp-0xc],0x0
+	<+21>:	jmp    0x518 <asm4+27>
 ```
 The stack now would look like this:
 ```
 	     Stack
 	|-------------|		(low memory)
-	|-----esp-----|		<--- ebp - 0x10
-	|-------------|		<--- ebp - 0xc
+	|----0x27a----|		<--- ebp - 0x10 (esp)
+	|-----0x0-----|		<--- ebp - 0xc
 	|-------------|		<--- ebp - 0x8
 	|-----ebx-----|		<--- ebp - 0x4
 	|-----ebp-----|
@@ -86,3 +89,23 @@ The stack now would look like this:
 	|----string---|		<--- ebp + 0x8 (input string)
 	|-------------|		(high memory)
 ```
+Now, take the jump to line 27.
+```
+	<+23>:	add    DWORD PTR [ebp-0xc],0x1
+	<+27>:	mov    edx,DWORD PTR [ebp-0xc]
+	<+30>:	mov    eax,DWORD PTR [ebp+0x8]
+	<+33>:	add    eax,edx
+	<+35>:	movzx  eax,BYTE PTR [eax]
+	<+38>:	test   al,al
+	<+40>:	jne    0x514 <asm4+23>
+```
+Look at this and we know that this is a loop through the input string in order to count the length of the string. Let's me explain this.
+
+At line 27, we move value in [ebp-0xc] into **EDX** and address of the string into **EAX**. Note that **EAX** now is a pointer, which point to the string location. After adding 0 to **EAX** (since **EDX** = 0), take the first byte of the string, which is letter "p", zero extend it and align it back into **EAX**.
+>`movzx` "**move with zero extension**" is special version of the `mov` instruction that perform zero extension from the source to the destination. This is the only instruction that allows the source and destination to be different sizes.
+>For example:
+>```
+	>al = 1101 0011 (8 bits)
+	>movzx		ax,al
+	>ax = 0000 0000 1101 0011 (16 bits)
+>```
