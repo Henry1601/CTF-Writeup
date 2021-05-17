@@ -105,7 +105,7 @@ At line 27, we move value in [ebp-0xc] into **EDX** and address of the string in
 >`movzx` "**move with zero extension**" is special version of the `mov` instruction that perform zero extension from the source to the destination. This is the only instruction that allows the source and destination to be different sizes.
 >For example:
 >```
-	>al = 1101 0011 (8 bits)
-	>movzx		ax,al
-	>ax = 0000 0000 1101 0011 (16 bits)
+>	al = 1101 0011 (8 bits)
+>	movzx	ax,al
+>	ax = 0000 0000 1101 0011 (16 bits)
 >```
