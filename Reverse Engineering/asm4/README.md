@@ -103,6 +103,7 @@ Look at this and we know that this is a loop through the input string in order t
 
 At line 27, we move value in [ebp-0xc] into **EDX** and address of the string into **EAX**. Note that **EAX** now is a pointer, which point to the string location. After adding 0 to **EAX** (since **EDX** = 0), take the first byte of the string, which is letter "p", zero extend it and align it back into **EAX**.
 >`movzx` "**move with zero extension**" is special version of the `mov` instruction that perform zero extension from the source to the destination. This is the only instruction that allows the source and destination to be different sizes.
+>
 >For example:
 >```
 >	al = 1101 0011 (8 bits)
