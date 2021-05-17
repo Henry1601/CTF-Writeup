@@ -106,7 +106,7 @@ At line 27, we move value in [ebp-0xc] into **EDX** and address of the string in
 >
 >For example:
 >```
->	al = 1101 0011 (8 bits)
->	movzx	ax,al
->	ax = 0000 0000 1101 0011 (16 bits)
+>		al = 1101 0011 (8 bits)
+>		movzx	ax,al
+>		ax = 0000 0000 1101 0011 (16 bits)
 >```
