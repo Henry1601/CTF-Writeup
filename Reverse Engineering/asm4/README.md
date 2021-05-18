@@ -5,6 +5,8 @@ AUTHOR: SANJAY C
 ## Solution
 As I mentioned [here](https://github.com/Henry1601/PicoCTF-Writeup/tree/main/Reverse%20Engineering/asm1), I will only explain handwork solution in this post.
 
+Also, this explaination requires knowledge of Flag Register in 8086 architecture. If you haven't heard or still confuse about it, this will be helpful: [Assembly Language Tutorial 4: Flags Register CF, OF, ZF ,AF, SF, PF](https://www.youtube.com/watch?v=oQKa5q-jVzY)
+
 Here is the code:
 ```
 asm4:
@@ -101,7 +103,7 @@ Now, take the jump to line 27.
 ```
 Look at this and we know that this is a loop through the input string in order to count the length of the string. Let's me explain this.
 
-At line 27, we move value in [ebp-0xc] into **EDX** and address of the string into **EAX**. Note that **EAX** now is a pointer, which point to the string location. After adding 0 to **EAX** (since **EDX** = 0), take the first byte of the string, which is letter "p", zero extend it and align it back into **EAX**.
+At line 27, we move value in [ebp-0xc] into **EDX** and address of the string into **EAX**. Note that **EAX** now is a pointer, which points to the string location, treat the string as an Array. After adding 0 to **EAX** (since **EDX** = 0), take the first byte of the string (index [0]), which is character "p", zero extend and align it back into **EAX**.
 >`movzx` "**move with zero extension**" is special version of the `mov` instruction that perform zero extension from the source to the destination. This is the only instruction that allows the source and destination to be different sizes.
 >
 >For example:
@@ -110,3 +112,36 @@ At line 27, we move value in [ebp-0xc] into **EDX** and address of the string in
 >		movzx	ax,al
 >		ax = 0000 0000 1101 0011 (16 bits)
 >```
+
+The purpose of `test	al,al` is to check if that was end of the string. `test` instruction will set ZF (zero flag) if and only if `al` equals 0. `jne` instruction will take the jump if ZF is set, or else, we back to line 23 to increase the pointer **EAX** to the next character in the string.
+>*Note that at line 35, we only take a BYTE from **EAX**.*
+
+This code block re-written in C would look like this:
+```
+	int strLen(char *letter) {
+ 		int i = 0;
+ 		while(*(letter + i) != '\0') {
+ 			i++;
+ 		}
+ 		return i;
+	}
+	//	strLen("picoCTF_f97bb") = 13
+```
+The value 13 is now stored at [ebp-0xc] since each round we add 1 to it.
+```
+	<+42>:	mov    DWORD PTR [ebp-0x8],0x1
+	<+49>:	jmp    0x587 <asm4+138>
+```
+At line 42 and 49, we stored 1 into [ebp-0x8] (*I guess this will be another count variable for the next loop*) and take unconditionally jump to line 138. Before that, let's take a look at our stack at this time:
+```
+	     Stack
+	|-------------|		(low memory)
+	|----0x27a----|		<--- ebp - 0x10
+	|-----0xd-----|		<--- ebp - 0xc (13 = 0xd)
+	|-----0x1-----|		<--- ebp - 0x8
+	|-----ebx-----|		<--- ebp - 0x4
+	|-----ebp-----|
+	|-----ret-----|		<--- ebp + 0x4 (return addr)
+	|----string---|		<--- ebp + 0x8 (input string)
+	|-------------|		(high memory)
+```
