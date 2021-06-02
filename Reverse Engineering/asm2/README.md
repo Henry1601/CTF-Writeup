@@ -6,7 +6,7 @@ AUTHOR: SANJAY C
 As I mentioned [here](https://github.com/Henry1601/PicoCTF-Writeup/tree/main/Reverse%20Engineering/asm1), I will only explain handwork solution in this post.
 
 Here is the code:
-```
+```bash
 asm2:
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
@@ -25,14 +25,14 @@ asm2:
 	<+41>:	ret
 ```
 As usual, first 3 lines are the set-up steps of the function.
-```
+```bash
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 	<+3>:	sub    esp,0x10
 ```
 We push **EBP** into the stack, move stack pointer (**ESP**) into it, then subtract 0x10 from **ESP**, which means we align the stack to a 16-byte boundary. Remember that stack grows towards lower memory addresses, that's why we subtract **ESP**.
 > *Note that all values in assembly are hexadecimal, 0x10 = 16 bytes.*
-```
+```bash
 	     Stack
 	|-------------|		(low memory)
 	|-----esp-----|		<--- ebp - 0x10
@@ -45,7 +45,7 @@ We push **EBP** into the stack, move stack pointer (**ESP**) into it, then subtr
 	|-----0x2e----|		<--- ebp + 0xc (second input value)
 	|-------------|		(high memory)
 ```
-```
+```bash
 	<+6>:	mov    eax,DWORD PTR [ebp+0xc]
 	<+9>:	mov    DWORD PTR [ebp-0x4],eax
 	<+12>:	mov    eax,DWORD PTR [ebp+0x8]
@@ -53,7 +53,7 @@ We push **EBP** into the stack, move stack pointer (**ESP**) into it, then subtr
 	<+18>:	jmp    0x509 <asm2+28>
 ```
 Next, we move 0x2e (second input value) to [ebp-0x4] at line 6 and 9, 0xb (first input value) to [ebp-0x8] at line 12 and 15. Then, take the jump to line 28.
-```
+```bash
 	     Stack
 	|-------------|		(low memory)
 	|-----esp-----|		<--- ebp - 0x10
@@ -66,7 +66,7 @@ Next, we move 0x2e (second input value) to [ebp-0x4] at line 6 and 9, 0xb (first
 	|-----0x2e----|		<--- ebp + 0xc (second input value)
 	|-------------|		(high memory)
 ```
-```
+```bash
 	<+20>:	add    DWORD PTR [ebp-0x4],0x1
 	<+24>:	sub    DWORD PTR [ebp-0x8],0xffffff80
 	<+28>:	cmp    DWORD PTR [ebp-0x8],0x63f3
@@ -79,17 +79,17 @@ Note that we are working on x86 architecture, so 0xffffff80 = -0x80.
 **[ebp-0x8] - (-0x80) = [ebp-0x8] + 0x80**
 
 Now, we can re-write line 24:
-```
+```bash
 	<+24>:  add    DWORD PTR [ebp-0x8],0x80
 ```
 In the last 3 lines, we return the value in **EAX**, which is [ebp-0x4].
-```
+```bash
 	<+37>:	mov    eax,DWORD PTR [ebp-0x4]
 	<+40>:	leave  
 	<+41>:	ret
 ```
 We can imagine the code written in C would be like this:
-```
+```bash
 	asm2(int a, int b) {
 		while(a <= 0x63f3) {
 			b += 1;
