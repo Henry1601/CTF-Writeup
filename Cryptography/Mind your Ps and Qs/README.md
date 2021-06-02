@@ -12,7 +12,7 @@ Download the attached file and look into the file content, it would be something
 ```
 Ok, this's important! You need to do some research about RSA cipher to have better unstanding how this algorithm actually works inside.
 
-This will be heplful: [RSA Algorithm](https://www.di-mgt.com.au/rsa_alg.html)
+> This will be heplful: [RSA Algorithm](https://www.di-mgt.com.au/rsa_alg.html)
 
 You may confuse a bit at first since Cryptography required some knowledge of math such as Prime, Multiplicative inverse,... It may take time but keep learning and trust me. It's worth to do so. By the way, it's not too hard to understand.
 
