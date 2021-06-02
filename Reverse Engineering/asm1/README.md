@@ -34,13 +34,13 @@ asm1:
 	<+61>:	ret
 ```
 I'll break it into pieces and explain each one.
-```
+```bash
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
 ```
 We know that we are putting 0x8be (input value of function) to stack, which gets pushed into **EBP** and then moved into **ESP** on line 0 and 1.
 
-```
+```bash
 	     Stack
 	|-------------|		(low memory)
 	|-----ebp-----|		<--- ebp
@@ -49,12 +49,12 @@ We know that we are putting 0x8be (input value of function) to stack, which gets
 	|-------------|		(high memory)
 ```
 > *If you don't understand these steps, these will be helpful: [Reversing Basics Part 2](http://blog.opensecurityresearch.com/2013/06/reversing-basics-part-2-understanding.html), [Call Stack 2/2](https://www.youtube.com/watch?v=Gfmq2vGhWbw)*
-```
+```bash
 	<+3>:	cmp    DWORD PTR [ebp+0x8],0x71c
 	<+10>:	jg     0x512 <asm1+37>
 ```
 In the next 2 line we are seeing that we are comparing 0x8be (value at [ebp+0x8]) with 0x71c and since 0x8be is greater than 0x71c, we take the jump to asm1+37. The `jg` means "**jump if greater**". Now we are going to line 37.
-```
+```bash
 	<+37>:	cmp    DWORD PTR [ebp+0x8],0x8be
 	<+44>:	jne    0x523 <asm1+54>
 	<+46>:	mov    eax,DWORD PTR [ebp+0x8]
@@ -62,14 +62,14 @@ In the next 2 line we are seeing that we are comparing 0x8be (value at [ebp+0x8]
 	<+52>:	jmp    0x529 <asm1+60>
 ```
 Here we are comparing input value with 0x8be. The `jne` means "**jump if not equal**" and obviously 0x8be is equal 0x8be so we do not take the jump. In line 46 and 49, we subtract 0x3 from 0x8be then move to EAX, which would be 0x8bb now. We then unconditionally jump `jmp` to line 60.
-```
+```bash
 	<+60>:	pop    ebp
 	<+61>:	ret
 ```
 At line 60, the stack is popped and EAX is returned. Since EAX is equal to 0x8bb, that is our flag.
 
 Here is the function re-written in C code:
-```
+```bash
 	int asm1(int val) {
 		if(val > 0x71c)
 			return val - 0x3;
@@ -81,7 +81,7 @@ Here is the function re-written in C code:
 ```
 ### Second solution
 Now I will make use of computer. First, I rewrite the code a little bit:
-```
+```bash
 	.intel_syntax noprefix
 	.global asm1
 
@@ -115,7 +115,7 @@ Now I will make use of computer. First, I rewrite the code a little bit:
 > *Note that `.intel_syntax noprefix` is used for GCC.*
 
 We then, build a C program to run it:
-```
+```bash
 	#include<stdio.h>
 
 	int main() {
@@ -124,7 +124,7 @@ We then, build a C program to run it:
 	}
 ```
 Now, use GCC to compile 2 files (I use Linux)
-```
+```bash
 	gcc -m32 -c asm1.S -o asm1.o		(compile assembly file to object)
 	gcc -m32 -w -c run.c -o run.o		(compile C file to object)
 	gcc -m32 run.o asm1.o -o result		(place output to result file)
