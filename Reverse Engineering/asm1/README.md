@@ -9,7 +9,7 @@ Note that this will require basic knowledge of assembly code that I can't cover 
 
 Let's begin!
 ### First solution
-```
+```bash
 asm1:
 	<+0>:	push   ebp
 	<+1>:	mov    ebp,esp
