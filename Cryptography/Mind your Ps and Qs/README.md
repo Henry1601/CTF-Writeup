@@ -1,7 +1,7 @@
 # Mind your Ps and Qs
 AUTHOR: SARA
 ## Problem
-> In RSA, a small `e` value can be problematic, but what about `N`? Can you decrypt this? [values](https://mercury.picoctf.net/static/bf5e2c8811afb4669f4a6850e097e8aa/values)
+> In RSA, a small `e` value can be problematic, but what about `N`? Can you decrypt this? [values](https://github.com/Henry1601/PicoCTF-Writeup/blob/main/Cryptography/Mind%20your%20Ps%20and%20Qs/values)
 ## Solution
 Download the attached file and look into the file content, it would be something like this:
 ```
@@ -14,7 +14,7 @@ Ok, this's important! You need to do some research about RSA cipher to have bett
 
 > This will be heplful: [RSA Algorithm](https://www.di-mgt.com.au/rsa_alg.html)
 
-You may confuse a bit at first since Cryptography required some knowledge of math such as Prime, Multiplicative inverse,... It may take time but keep learning and trust me. It's worth to do so. By the way, it's not too hard to understand.
+You may confuse a bit at first since Cryptography required some knowledge of math such as Prime, Multiplicative Inverse,... It may take time but keep learning and trust me. It's worth to do so. By the way, it's not too hard to understand.
 
 First thing to do with RSA is to look at it public key (n,e). In RSA, `n` is a product of 2 prime integers and we need to factorize it before doing anything. This is also the hardest part of breaking an RSA, which make RSA secure. I used this tool to factorize: [Prime Factors Decomposition](https://www.dcode.fr/prime-factors-decomposition).
 ```
@@ -37,7 +37,7 @@ Last step, message `m` will be `c^d mod n`. I used this tool: [Modular Exponenti
 ```
 Convert the final `m` to ASCII and that's our flag!
 
-Let me say that again: It's important to understanding the inside process of the RSA cipher. This will be your base knowledge to get into Cryptography. Don't be dependent on tools, tools help you caculate cipher faster but not help you to understand the cipher.
+Let me say this again: It's important to understanding the inside process of the RSA cipher. This will be your base knowledge to get into Cryptography. Don't be dependent on tools, tools help you caculate cipher faster but not help you to understand the cipher.
 
 Here is the tool for the full cipher process: [RSA Cipher Calculator](https://www.dcode.fr/rsa-cipher). By the way, this page has many cool caculation tools to work with large numbers since normal caculators can not do so.
 
