@@ -39,6 +39,7 @@ Now I use radare2 to debug the program. Some resources I think might be helpful 
 > `s` command is to move to the specified function.
 >
 > `pdd` command is to decompile the function "checkPassword"
+This is the function after decompiling
 ```bash
 #include <stdint.h>
  
@@ -79,32 +80,32 @@ label_1:
 	ebx = 0;
 	while (al != bl) {
 label_0:
-	eax++;
-	if (eax >= 0x20) {
-		goto label_5;
-	}
-	if (eax >= edx) {
-		goto label_6;
-	}
-	ebp = *((ecx + eax));
-	if (eax >= 0x20) {
-		goto label_6;
-	}
-	esi = *((esp + eax + 4));
-	ebp ^= esi;
-	esi = *((esp + eax + 0x24));
-	tmp_0 = eax;
-	eax = ebp;
-	ebp = tmp_0;
-	tmp_1 = esi;
-	esi = ebx;
-	ebx = tmp_1;
-	tmp_2 = esi;
-	esi = ebx;
-	ebx = tmp_2;
-	tmp_3 = eax;
-	eax = ebp;
-	ebp = tmp_3;
+		eax++;
+		if (eax >= 0x20) {
+			goto label_5;
+		}
+		if (eax >= edx) {
+			goto label_6;
+		}
+		ebp = *((ecx + eax));
+		if (eax >= 0x20) {
+			goto label_6;
+		}
+		esi = *((esp + eax + 4));
+		ebp ^= esi;
+		esi = *((esp + eax + 0x24));
+		tmp_0 = eax;
+		eax = ebp;
+		ebp = tmp_0;
+		tmp_1 = esi;
+		esi = ebx;
+		ebx = tmp_1;
+		tmp_2 = esi;
+		esi = ebx;
+		ebx = tmp_2;
+		tmp_3 = eax;
+		eax = ebp;
+		ebp = tmp_3;
 	}
 	ebx++;
 	goto label_0;
