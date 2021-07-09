@@ -38,7 +38,8 @@ Now I use radare2 to debug the program. Some resources I think might be helpful 
 > 
 > `s` command is to move to the specified function.
 >
-> `pdd` command is to decompile the function "checkPassword"
+> `pdd` command is to decompile the function "checkPassword".
+
 This is the function after decompiling
 ```bash
 #include <stdint.h>
