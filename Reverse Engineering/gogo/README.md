@@ -110,7 +110,7 @@ Now, put a breakpoint at the end of this code block to see what inside the stack
 >
 >`dc` command is to continue running the program.
 >
-> The stack is usually small in visual mode, use can expand it with command `e stack.size = 128` which would set the stack size to 128 bytes.
+> The stack is usually small in visual mode, you can expand it with command `e stack.size = 128` which would set the stack size to 128 bytes.
 
 And here is the hexdump from [esp]:
 ```bash
