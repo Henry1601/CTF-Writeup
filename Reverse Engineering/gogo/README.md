@@ -42,14 +42,14 @@ Now I use radare2 to debug the program. Some resources I think might be helpful 
 
 The disassembler show a lot but we just find what we need. Look at those first lines:
 ```bash
- 	 0x080d4a80      658b0d000000.  mov ecx, dword gs:[0]       ; enter_password.go:30    ; void main.checkPassword(string input,bool ~r1);                                            
- 	 0x080d4a87      8b89fcffffff   mov ecx, dword [ecx - 4]
-	 0x080d4a8d      3b6108         cmp esp, dword [ecx + 8]
- ┌─< 0x080d4a90      0f86d7000000   jbe 0x80d4b6d
- │   0x080d4a96      83ec44         sub esp, 0x44
- │   0x080d4a99      8b4c244c       mov ecx, dword [arg_4ch]
- │   0x080d4a9d      83f920         cmp ecx, 0x20               ; enter_password.go:31    ; 32
-┌──< 0x080d4aa0      0f8cab000000   jl 0x80d4b51
+	0x080d4a80      658b0d000000.  mov ecx, dword gs:[0]       ; enter_password.go:30    ; void main.checkPassword(string input,bool ~r1);
+	0x080d4a87      8b89fcffffff   mov ecx, dword [ecx - 4]
+	0x080d4a8d      3b6108         cmp esp, dword [ecx + 8]
+    ┌─< 0x080d4a90      0f86d7000000   jbe 0x80d4b6d
+    │   0x080d4a96      83ec44         sub esp, 0x44
+    │   0x080d4a99      8b4c244c       mov ecx, dword [arg_4ch]
+    │   0x080d4a9d      83f920         cmp ecx, 0x20               ; enter_password.go:31    ; 32
+   ┌──< 0x080d4aa0      0f8cab000000   jl 0x80d4b51
 ```
 From the line at [0x080d4a9d] and with the clue we find out at first, I'm sure that the program only accept equal or more than 32-character length input since the `jl` command at line [0x080d4aa0] will lead to exit function
 ```bash
