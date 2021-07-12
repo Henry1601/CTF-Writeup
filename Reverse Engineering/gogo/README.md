@@ -121,7 +121,7 @@ And here is the hexdump from [esp]:
 	0x19c3df54  5357 450d 0500 5d55 5410 010e 4155 574b  SWE...]UT...AUWK
 	0x19c3df64  4550 4601 c248 0d08 2000 c919 2000 0000  EPF..H.. ... ...
 ```
-Here are what we're looking for, 32 bytes from [esp+4] will be the key and 32 bytes from [esp+0x24] will be the final string which must be match after the XOR process. So what we gonna do now is just simply XOR the final string with the key to find to password.
+Here are what we're looking for, 32 bytes from [esp+4] will be the key and 32 bytes from [esp+0x24] will be the final string which must be match after the XOR process. So what we gonna do now is just simply XOR the final string with the key to find the password.
 ```bash
 	$ python
 	>>> key = 0x3836313833366631336533643632376466613337356264623833383932313465
@@ -138,3 +138,17 @@ Let's try the password
 	This challenge is interrupted by psociety
 	What is the unhashed key?
 ```
+Seem like it want us to provide the unhashed key, I used this tool to crack the hashed key [CrackStation](https://crackstation.net/) and recieve the result that this is MD5 hash of "**goldfish**". Now, try again on the online instance since the flag file is on the server.
+```bash
+	$ nc mercury.picoctf.net 4052
+	Enter Password: reverseengineericanbarelyforward
+	=========================================
+	This challenge is interrupted by psociety
+	What is the unhashed key?
+	goldfish
+	Flag is:  picoCTF{p1kap1ka_p1c09a4dd7f3}
+```
+
+*Have fun hacking!*
+## Flag
+`picoCTF{p1kap1ka_p1c09a4dd7f3}`
