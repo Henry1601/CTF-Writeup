@@ -138,7 +138,7 @@ Let's try the password
 	This challenge is interrupted by psociety
 	What is the unhashed key?
 ```
-Seem like it want us to provide the unhashed key, I used this tool to crack the hashed key [CrackStation](https://crackstation.net/) and recieve the result that this is MD5 hash of "**goldfish**". Now, try again on the online instance since the flag file is on the server.
+Seem like it want us to provide the unhashed key, I used [CrackStation](https://crackstation.net/) to crack the hashed key `861836f13e3d627dfa375bdb8389214e` and recieve the result that this is MD5 hash of "**goldfish**". Now, try again on the online instance since the flag file is on the server.
 ```bash
 	$ nc mercury.picoctf.net 4052
 	Enter Password: reverseengineericanbarelyforward
