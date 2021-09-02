@@ -66,7 +66,7 @@ Here we are comparing input value with 0x8be. The `jne` means "**jump if not equ
 	<+60>:	pop    ebp
 	<+61>:	ret
 ```
-At line 60, the stack is popped and EAX is returned. Since EAX is equal to 0x8bb, that is our flag.
+At line 60, the stack is popped and EAX is returned. Since now EAX is equal to 0x8bb, that is our flag.
 
 Here is the function re-written in C code:
 ```bash
@@ -134,5 +134,5 @@ Now, use GCC to compile 2 files (I use Linux)
 Finally, run result file (`./result`) and we get the flag. But as I said before, it's recommend to do with first way since it helps you to understand the code better. Computer-way is should only use incase lack of time.
 
 That's it. *Have fun hacking!*
-## Flag
-`0x8bb`
+
+Henry.
